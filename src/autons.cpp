@@ -199,6 +199,47 @@ void blueSWP(){
   chassis.drive_to_point(9, 58);
   intake.move(0);
   */
+
+  odom_constants();
+  chassis.set_coordinates(0, 0, 0);
+  
+  chassis.drive_to_point(0, 32);
+  intake.move(120);
+  chassis.drive_to_point(0,36);
+  pros::delay(50);
+  intake.move(0);
+  chassis.turn_to_point(24, 36);
+  chassis.drive_to_point(-20, 36);
+  pneumatics.clench_v(1);
+  pros::delay(100);
+  intake.move(120);
+  chassis.drive_to_point(-24, 36);
+  chassis.turn_to_point(-48, 12);
+  intake.move(0);
+  chassis.drive_to_point(-46,14);
+  pros::delay(250);
+  //intake top ring
+  //intake stop
+  chassis.drive_to_point(-48, 12);
+  chassis.turn_to_point(-24, -12);
+  pneumatics.clench_v(0);
+  pros::delay(50);
+  chassis.drive_to_point(-70, 34);
+  pneumatics.clench_v(1);
+  pros::delay(250);
+  chassis.drive_to_point(-72, 36);
+  chassis.turn_to_point(-96, 36);
+  chassis.drive_to_point(-92, 36);
+  pros::delay(100);
+  intake.move(120);
+  chassis.drive_to_point(-96, 36);
+  pros::delay(50);
+  intake.move(0);
+  chassis.turn_to_point(-60, 48);
+  chassis.drive_to_point(-60, 48, 6, 10);
+
+  //add pushing of our allliance robot
+  //ensure that our robot remains in contact with the ladder at the end of the autonomous period
 }
 
 void redElim(){
