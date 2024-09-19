@@ -255,3 +255,13 @@ void blueElim()
   chassis.drive_to_point(2, 10);
   intake.move(120);
 }
+void redSimpleSWP(){
+  chassis.set_coordinates(0, 0, 0);
+  odom_constants();
+  chassis.drive_to_point(0,13.5);
+  chassis.turn_to_point(-100,19);
+  pneumatics.clench_v(1);
+  chassis.drive_to_point(5,15, 9, 0,1, 400, 800);
+  intake.move(600);
+  
+}
