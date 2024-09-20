@@ -98,112 +98,147 @@ void tank_odom_test(){
   chassis.turn_to_point(0,0,0,10);
   chassis.drive_to_point(0,0,10,2);
   chassis.turn_to_point(0,24,0,10);
+
+  
 }
 
 void redSWP(){
+  chassis.set_coordinates(0, 0, 0);
   odom_constants();
-  chassis.drive_distance(20);
-  chassis.turn_to_angle(96);
+  chassis.drive_to_point(0,13.5);
+  chassis.turn_to_point(-100,19);
   pneumatics.clench_v(1);
-  chassis.drive_distance(-10);
-  intake.move(500);
-  pros::delay(200);
-  pneumatics.clench_v(0);
-  chassis.drive_distance(10);
-  intake.move(-500);
-  chassis.set_coordinates(24, 20, 0);
-  chassis.turn_to_point(-24,50);
-  chassis.drive_to_point(-12,38);
-  intake.move(1000);
-  chassis.drive_to_point(-24,50);
-  pros::delay(300);
+  chassis.drive_to_point(5,15, 9, 0,1, 400, 800);
+  intake.move(600);
+  pros::delay(400);
   intake.move(0);
-  chassis.turn_to_point(-60,50);
-  chassis.drive_to_point(0,48);
-  pneumatics.clench_v(1);
-  intake.move(800);
-  pros::delay(200);
-  chassis.drive_to_point(-24,50);
-  chassis.turn_to_point(-28,72);
-  chassis.drive_to_point(-28,65, 7, 0);
-  pros::delay(800);
-  chassis.drive_to_point(-24,30);
+  chassis.set_coordinates(0, 0, 0);
   pneumatics.clench_v(0);
-  chassis.turn_to_point(12,60);
-  chassis.drive_to_point(12,60);
+  chassis.drive_to_point(0,5, 9, 0,1, 400, 800);
+  chassis.turn_to_point(-52,40);
+  intake.move(600);
+  chassis.drive_to_point(-49,37, 14, 0);
+  pros::delay(0);
+  intake.move(0);
+  chassis.turn_to_point(-150,42);
+  chassis.drive_to_point(-29,37, 14, 0);
+  pneumatics.clench_v(1);
+  intake.move(600);
+  pros::delay(200);
+  chassis.drive_to_point(-40,37, 14, 0);
+  chassis.turn_to_point(-47,60);
+  chassis.drive_to_point(-48,55, 10, 0);
+  pros::delay(500);
+  chassis.drive_to_point(-44,51, 10, 0);
+  chassis.turn_to_point(-50,56);
+  chassis.drive_to_point(-52,55.5, 10, 0);
+  pros::delay(500);
+  chassis.drive_to_point(-42,48, 14, 0,1, 400, 800);
+  pneumatics.clench_v(0);
+  chassis.turn_to_point(50,115);
+  chassis.drive_to_point(-24,60, 14, 0,1, 400, 800);
 }
 
-void blueSWP(){
+
+void redBasicQual(){
+  chassis.set_coordinates(0, 0, 0);
   odom_constants();
-  chassis.set_coordinates(0,0, 0);
-  chassis.drive_to_point(0,19);
-  chassis.turn_to_point(-48,22);
+  chassis.drive_to_point(0, -27);
   pneumatics.clench_v(1);
-  chassis.drive_to_point(10, 19, 8, 0, 1, 200, 500);
-  intake.move(600);
-  pros::delay(600);
+  chassis.drive_to_point(0, -28);
+  intake.move(-120);
+  pros::delay(1000);
+  chassis.turn_to_point(-24, -28);
+  chassis.drive_to_point(-24, -28);
+  pros::delay(1200);
+  chassis.turn_to_point(0, -28);
+  chassis.drive_to_point(0, -28);
+  chassis.turn_to_point(24, -52);
+  chassis.drive_to_point(8, -35);
   pneumatics.clench_v(0);
-  chassis.drive_to_point(0,19);
-  chassis.set_coordinates(24, 20, 0);
-  intake.move(-600);
-  chassis.turn_to_point(50, 30);
-  chassis.drive_to_point(50, 30);
-  chassis.turn_to_point(72, 60);
-  intake.move(450);
-  chassis.drive_to_point(72, 60);
-  pros::delay(200);
+}
+
+void redRightElim(){
+  chassis.set_coordinates(0, 0, 0);
+  odom_constants();
+  chassis.drive_to_point(0, -27);
+  pneumatics.clench_v(1);
+  chassis.drive_to_point(0, -28);
+  intake.move(-120);
+  pros::delay(1000);
+  chassis.turn_to_point(-24, -30);
+  chassis.drive_to_point(-24, -30);
+  pros::delay(1200);
+  chassis.set_coordinates(0, 0, 0);
   intake.move(0);
-  chassis.turn_to_point(200, 60);
-  chassis.drive_to_point(44, 60);
-  pneumatics.clench_v(1);
-  pros::delay(300);
-  intake.move(600);
-  pros::delay(600);
-  chassis.drive_to_point(70, 60);
-  chassis.turn_to_point(70, 76);
-  chassis.drive_to_point(70, 76);
-  chassis.drive_distance(-10);
-  chassis.turn_to_point(68,76);
-  chassis.drive_to_point(68,76);
-  pros::delay(800);
-  pneumatics.clench_v(0);
-  chassis.turn_to_point(30,68);
-  chassis.drive_to_point(30,68);
-  /*
-  chassis.set_coordinates(-24, 20, 0);
-  chassis.turn_to_point(-40, 46);
-  chassis.drive_to_point(-40, 46);
-  intake.move(120);
+  pros::delay(500);
+  chassis.turn_to_point(-24, -16);
   pros::delay(200);
-  intake.move(0);
-  chassis.turn_to_point(-72, 50);
-  chassis.drive_to_point(-26, 50);
-  pneumatics.clench_v(1);
-  pros::delay(50);
-  intake.move(120);
-  chassis.turn_to_point(-8, 32, 0, 5);
-  pros::delay(150);
-  pneumatics.clench_v(0);
-  chassis.drive_to_point(-8, 32);
+  chassis.drive_distance(-8);
+  intake.move(-120);
   pros::delay(100);
   intake.move(0);
-  chassis.turn_to_point(11, 30);
-  chassis.drive_to_point(11, 30);
-  intake.move(120);
-  chassis.turn_to_point(8, 0, 0, 6);
-  chassis.drive_to_point(20, 50, 10, 8);
-  pneumatics.clench_v(1);
-  pros::delay(50);
-  intake.move(120);
-  chassis.turn_to_point(48, 12);
-  chassis.drive_to_point(9, 58);
-  intake.move(0);
-  */
+  pneumatics.clench_v(0);
+  pros::delay(250);
+  chassis.drive_to_point(0, 0);
+  chassis.turn_to_point(24, -2);
+  chassis.drive_to_point(-6, 0);
 }
 
+
+
 void redElim(){
+  chassis.set_coordinates(0, 0, 0);
   odom_constants();
-  chassis.set_coordinates(24, 20, 0);
+  chassis.drive_to_point(0, -27);
+  pneumatics.clench_v(1);
+  chassis.drive_to_point(0, -28);
+  intake.move(-120);
+  pros::delay(1000);
+  chassis.turn_to_point(-24, -28);
+  chassis.drive_to_point(-24, -28);
+  pros::delay(1200);
+  chassis.turn_to_point(0, -28);
+  chassis.drive_to_point(0, -28);
+  chassis.turn_to_point(24, -52);
+  chassis.drive_to_point(8, -35);
+  pneumatics.clench_v(0);
+  
+  odom_constants();
+  chassis.set_coordinates(0, 0, 180);
+  chassis.drive_to_point(0, 27);
+  pneumatics.clench_v(1);
+  pros::delay(25);
+  chassis.drive_to_point(0, 36);
+  intake.move(127);
+  chassis.set_coordinates(0, 0, 180);
+  pros::delay(25);
+  chassis.turn_to_point(-24, 0);
+  chassis.drive_to_point(-26, 0);
+  pros::delay(25);
+  chassis.turn_to_point(-26, 24);
+  chassis.drive_to_point(-26, 18);
+  chassis.drive_to_point(-26, 14);
+  chassis.turn_to_point(-22, 18);
+  chassis.drive_to_point(-22, 18);
+  chassis.drive_to_point(-26, 14);
+  chassis.turn_to_point(12, -14);
+  chassis.drive_to_point(12, -14);
+  chassis.turn_to_point(24, -14);
+  chassis.drive_to_point(24, -14);
+  chassis.turn_to_point(72, 0);
+  chassis.drive_to_point(72, 0);
+  pneumatics.clench_v(0);
+  chassis.turn_to_point(72, -24);
+  chassis.drive_to_point(72, 14);
+  pneumatics.clench_v(1);
+  chassis.drive_to_point(72, 24);
+  intake.move(0);
+
+
+
+
+  /*chassis.set_coordinates(24, 20, 0);
   chassis.drive_to_point(24, 38);
   pneumatics.clench_v(1);
   chassis.turn_to_point(40, 48);
@@ -225,12 +260,130 @@ void redElim(){
   pros::delay(200);
   chassis.turn_to_point(2, 48, 0, 7);
   chassis.drive_to_point(-2, 10);
-  intake.move(120);
+  intake.move(120);*/
 }
 
-void blueElim()
-{
+
+
+void blueSWP(){
+  //not mirrored
+  chassis.set_coordinates(0, 0, 0);
   odom_constants();
+  chassis.drive_to_point(0,13.5);
+  chassis.turn_to_point(100,19);
+  pneumatics.clench_v(1);
+  chassis.drive_to_point(-5, 15, 9, 0,1, 400, 800);
+  intake.move(600);
+  pros::delay(400);
+  intake.move(0);
+  chassis.set_coordinates(0, 0, 0);
+  pneumatics.clench_v(0);
+  chassis.drive_to_point(0, 5, 9, 0,1, 400, 800);
+  chassis.turn_to_point(52, 40);
+  intake.move(600);
+  chassis.drive_to_point(49, 37, 14, 0);
+  pros::delay(0);
+  intake.move(0);
+  chassis.turn_to_point(150, 42);
+  chassis.drive_to_point(29, 37, 14, 0);
+  pneumatics.clench_v(1);
+  intake.move(600);
+  pros::delay(200);
+  chassis.drive_to_point(40, 37, 14, 0);
+  chassis.turn_to_point(47, 60);
+  chassis.drive_to_point(48, 55, 10, 0);
+  pros::delay(500);
+  chassis.drive_to_point(44, 51, 10, 0);
+  chassis.turn_to_point(50, 56);
+  chassis.drive_to_point(52, 55.5, 10, 0);
+  pros::delay(500);
+  chassis.drive_to_point(42, 48, 14, 0,1, 400, 800);
+  pneumatics.clench_v(0);
+  chassis.turn_to_point(-50, 115);
+  chassis.drive_to_point(24, 60, 14, 0,1, 400, 800);
+  
+}
+
+
+void blueBasicQual() {
+  //not mirrored
+  chassis.set_coordinates(0, 0, 0);
+  odom_constants();
+  chassis.drive_to_point(0, -27);
+  pneumatics.clench_v(1);
+  chassis.drive_to_point(0, -28);
+  intake.move(-120);
+  pros::delay(1000);
+  chassis.turn_to_point(24, -28);
+  chassis.drive_to_point(24, -28);
+  pros::delay(1200);
+  chassis.turn_to_point(0, -28);
+  chassis.drive_to_point(0, -28);
+  chassis.turn_to_point(-24, -52);
+  chassis.drive_to_point(-8, -35);
+  pneumatics.clench_v(0);
+}
+
+
+void blueLeftElim() {
+  //not mirrored
+  chassis.set_coordinates(0, 0, 0);
+  odom_constants();
+  chassis.drive_to_point(0, -27);
+  pneumatics.clench_v(1);
+  chassis.drive_to_point(0, -28);
+  intake.move(-120);
+  pros::delay(1000);
+  chassis.turn_to_point(24, -28);
+  chassis.drive_to_point(24, -28);
+  pros::delay(1200);
+  chassis.set_coordinates(0, 0, 0);
+  chassis.turn_to_point(24, -16);
+  chassis.drive_to_point(12, 8);
+  intake.move(-120);
+  pros::delay(100);
+  intake.move(0);
+  pneumatics.clench_v(0);
+  pros::delay(100);
+  chassis.drive_to_point(0, 0);
+  chassis.turn_to_point(-24, 0);
+  chassis.drive_to_point(12, 0);
+}
+
+void blueElim(){
+  /*chassis.set_coordinates(0, 0, 0);
+  odom_constants();
+  chassis.drive_to_point(0,8, 14, 0, 1, 200, 500);
+  //intake.move(400);
+  chassis.drive_to_point(0,18, 14, 0, 1, 200, 500);
+  pros::delay(500);
+  intake.move(0);
+  chassis.turn_to_point(-60, 40, 0, 14, 1, 500, 700);
+  chassis.set_coordinates(0,0,0);
+  chassis.turn_to_point(24, -24, 0, 14, 1, 500, 700);
+  chassis.drive_to_point(-24, 24, 14, 0, 1, 500, 700);
+  pneumatics.clench_v(1);
+  chassis.turn_to_point(-48, 23, 0, 14, 1, 500, 700);
+  intake.move(600);
+  chassis.drive_to_point(-48, 23, 14, 0, 1, 500, 700);
+  pros::delay(400);
+  chassis.turn_to_point(12,0);
+  intake.move(-600);
+  chassis.drive_to_point(12,0, 14, 0, 1, 500, 700);
+  chassis.turn_to_point(48,29);
+  intake.move(600);
+  chassis.drive_to_point(48,29, 14, 0, 1, 500, 700);
+  pros::delay(500);
+  chassis.turn_to_point(51,47);
+  chassis.drive_to_point(51,47);
+  pros::delay(400);
+  chassis.drive_to_point(51,40);
+  chassis.turn_to_point(47,49);
+  chassis.drive_to_point(47,49);
+  pros::delay(800);
+  chassis.drive_to_point(44,40, 14, 0, 1, 200, 500);
+  intake.move(0);*/
+  /*
   chassis.set_coordinates(-24, 20, 0);
   chassis.drive_to_point(-24, 38);
   pneumatics.clench_v(1);
@@ -254,41 +407,68 @@ void blueElim()
   chassis.turn_to_point(-2, 48, 0, 7);
   chassis.drive_to_point(2, 10);
   intake.move(120);
-}
-void redSimpleSWP(){
+  */
   chassis.set_coordinates(0, 0, 0);
   odom_constants();
-  chassis.drive_to_point(0,13.5);
-  chassis.turn_to_point(-100,19);
+  chassis.drive_to_point(0, -32);
   pneumatics.clench_v(1);
-  chassis.drive_to_point(5,15, 9, 0,1, 400, 800);
-  intake.move(600);
-   pros::delay(400);
-   intake.move(0);
+  chassis.drive_to_point(0, -36);
+  intake.move(120);
+  chassis.turn_to_point(-24, -36);
+  chassis.drive_to_point(-24, -36);
+
+
+}
+
+
+
+void skills() {
   chassis.set_coordinates(0, 0, 0);
-  pneumatics.clench_v(0);
-  chassis.drive_to_point(0,5, 9, 0,1, 400, 800);
- chassis.turn_to_point(-52,40);
- intake.move(600);
- chassis.drive_to_point(-49,37, 14, 0);
- pros::delay(0);
- intake.move(0);
- chassis.turn_to_point(-150,42);
- chassis.drive_to_point(-29,37, 14, 0);
- pneumatics.clench_v(1);
- intake.move(600);
- pros::delay(200);
- chassis.drive_to_point(-40,37, 14, 0);
- chassis.turn_to_point(-47,60);
-  chassis.drive_to_point(-48,55, 10, 0);
+  odom_constants();
+  chassis.drive_to_point(0, 24);
+}
+
+
+
+
+void blueSWPGoal(){
+  /*chassis.drive_to_point(0, 8, 14, 0, 1, 200, 500);
+  //intake.move(400);
+  chassis.drive_to_point(0, 18, 14, 0, 1, 200, 500);
   pros::delay(500);
-  chassis.drive_to_point(-44,51, 10, 0);
-  chassis.turn_to_point(-50,56);
-  chassis.drive_to_point(-52,55.5, 10, 0);
-  pros::delay(500);
-  chassis.drive_to_point(-42,48, 14, 0,1, 400, 800);
+  intake.move(0);
+  chassis.turn_to_point(-60, 40, 0, 14, 1, 500, 700);
+  chassis.set_coordinates(0,0,0);
+  chassis.turn_to_point(24, -24, 0, 14, 1, 500, 700);
+  chassis.drive_to_point(-24, 24, 14, 0, 1, 500, 700);
+  pros::delay(100);
+  pneumatics.clench_v(1);
+  intake.move(600);
+  pros::delay(1000);
+  chassis.turn_to_point(-48, 20, 0, 14, 1, 500, 700);
   pneumatics.clench_v(0);
-  chassis.turn_to_point(50,115);
-  chassis.drive_to_point(-24,60, 14, 0,1, 400, 800);
-  
+  chassis.drive_to_point(-48, 20, 14, 0, 1, 500, 700);
+  pros::delay(600);
+  intake.move(0);
+  chassis.turn_to_point(-40, -24, 0, 14, 1, 500, 700);
+  chassis.drive_to_point(-48, 41, 14, 0, 1, 500, 700);
+  pneumatics.clench_v(1);
+  pros::delay(400);
+  intake.move(600);
+  chassis.drive_to_point(-48, 14, 14, 0, 1, 500, 700);
+  pneumatics.clench_v(0);
+  pros::delay(200);
+  chassis.turn_to_point(45,-20, 0, 14, 1, 500, 700);
+  intake.move(-600);
+  chassis.drive_to_point(45,-20, 14, 0, 1, 500, 700);
+  chassis.turn_to_point(40,29);
+  intake.move(600);
+  chassis.drive_to_point(40,29, 14, 0);
+  pros::delay(500);
+  intake.move(0);
+  chassis.turn_to_point(100,20);
+  chassis.drive_to_point(24,26);
+  pneumatics.clench_v(1);
+  intake.move(600);
+  chassis.drive_to_point(0,48);*/
 }
