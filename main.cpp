@@ -11,7 +11,7 @@ pros::Motor left_back_mtr(-20, pros::v5::MotorGears::blue, pros::v5::MotorUnits:
 pros::Motor right_front_mtr(6, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
 pros::Motor right_middle_mtr(19, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
 pros::Motor right_back_mtr(21, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
-pros::Motor intake_mtrl(-14, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
+pros::Motor intake_mtrl(14, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
 pros::Motor intake_mtrr(-90, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
 
 //Chassis constructor
@@ -57,6 +57,7 @@ Pneumatics pneumatics(
 	{clench, climb, doinker}
 );
 
+
 void on_center_button() {
 	static bool pressed = false;
 	pressed = !pressed;
@@ -72,8 +73,8 @@ void initialize() {
 	chassis.initialize();
 	intake.initialize();
 	pneumatics.clench_initialize();
-  pneumatics.doinker_initialize();
 	pneumatics.climb_initialize();
+  pneumatics.doinker_initialize();
 }
 
 void disabled() {}
@@ -90,27 +91,42 @@ void competition_initialize() {
         pros::screen::print(TEXT_LARGE, 50, 50, "RedSWP");
         break;
       case 1:
-        pros::screen::print(TEXT_LARGE, 50, 50, "BlueSWP");
+       pros::screen::print(TEXT_LARGE, 50, 50, "RedBasicQual");
         break;
       case 2:
-        pros::screen::print(TEXT_LARGE, 50, 50, "Red Elim");
+        pros::screen::print(TEXT_LARGE, 50, 50, "Red Right Elim");
         break;
       case 3:
+        pros::screen::print(TEXT_LARGE, 50, 50, "Red Elim");
+        break;
+      case 4:
+        pros::screen::print(TEXT_LARGE, 50, 50, "BlueSWP");
+        break;
+      case 5:
+        pros::screen::print(TEXT_LARGE, 50, 50, "BlueBasicQual");
+        break;
+      case 6:
+        pros::screen::print(TEXT_LARGE, 50, 50, "Blue Left Elim");
+        break;
+      case 7:
         pros::screen::print(TEXT_LARGE, 50, 50, "Blue Elim");
+        break;
+      case 8:
+        pros::screen::print(TEXT_LARGE, 50, 50, "Skills");
         break;
     }
     if(pros::screen::touch_status().touch_status == TOUCH_PRESSED){
       current_auton_selection ++;
       while(pros::screen::touch_status().touch_status == TOUCH_PRESSED  || pros::screen::touch_status().touch_status == TOUCH_HELD) {pros::delay(10);}
-    } else if (current_auton_selection == 4){
+    } else if (current_auton_selection == 9){
       current_auton_selection = 0;
     }
     pros::Task::delay(10);
     }
 }
 void autonomous() {
-  redSimpleSWP();
-  /*
+  redRightElim();
+
   auto_started = true;
   chassis.set_brake_mode('H');
   switch(current_auton_selection){  
@@ -118,17 +134,31 @@ void autonomous() {
       redSWP(); //This is the default auton, if you don't select from the brain.
       break;        //Change these to be your own auton functions in order to use the auton selector.
     case 1:         //Tap the screen to cycle through autons.
-      blueSWP();
+      redBasicQual();
       break;
     case 2:
-      redElim();
+      redRightElim();
       break;
     case 3:
+      redElim();
+      break;
+    case 4:
+      blueSWP(); 
+      break;     
+    case 5:     
+      blueBasicQual();
+      break;
+    case 6:
+      blueLeftElim();
+      break;
+    case 7:
       blueElim();
+      break;
+    case 8:
+      skills();
       break;
  }
  chassis.set_brake_mode('C');
- */
 }
 
 void opcontrol(void) {
@@ -140,7 +170,7 @@ void opcontrol(void) {
 		intake.intake_control();
 		pneumatics.clench_control();
     pneumatics.doinker_control();
-    pneumatics.climb_control();
+    //pneumatics.climb_control();
     pros::delay(util::DELAY_TIME); 
   }
 }
