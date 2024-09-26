@@ -46,7 +46,7 @@ Drive chassis(
   //Sideways tracker diameter (reverse to make the direction switch):
   2.75,
   //Sideways tracker center distance (positive distance is behind the center of the robot, negative is in front):
-  2.15
+  2
 );
 
 Intake intake(
@@ -90,46 +90,76 @@ void competition_initialize() {
         pros::screen::print(TEXT_LARGE, 50, 50, "RedSWP");
         break;
       case 1:
-        pros::screen::print(TEXT_LARGE, 50, 50, "BlueSWP");
+       pros::screen::print(TEXT_LARGE, 50, 50, "RedRightQual");
         break;
       case 2:
-        pros::screen::print(TEXT_LARGE, 50, 50, "Red Elim");
+        pros::screen::print(TEXT_LARGE, 50, 50, "Red Right Elim");
         break;
       case 3:
-        pros::screen::print(TEXT_LARGE, 50, 50, "Blue Elim");
+        pros::screen::print(TEXT_LARGE, 50, 50, "RedLeftElim");
+        break;
+      case 4:
+        pros::screen::print(TEXT_LARGE, 50, 50, "BlueSWP");
+        break;
+      case 5:
+        pros::screen::print(TEXT_LARGE, 50, 50, "BlueLeftQual");
+        break;
+      case 6:
+        pros::screen::print(TEXT_LARGE, 50, 50, "Blue Left Elim");
+        break;
+      case 7:
+        pros::screen::print(TEXT_LARGE, 50, 50, "BlueRightElim");
+        break;
+      case 8:
+        pros::screen::print(TEXT_LARGE, 50, 50, "Skills");
         break;
     }
     if(pros::screen::touch_status().touch_status == TOUCH_PRESSED){
       current_auton_selection ++;
       while(pros::screen::touch_status().touch_status == TOUCH_PRESSED  || pros::screen::touch_status().touch_status == TOUCH_HELD) {pros::delay(10);}
-    } else if (current_auton_selection == 4){
+    } else if (current_auton_selection == 9){
       current_auton_selection = 0;
     }
     pros::Task::delay(10);
     }
 }
 void autonomous() {
-  redSimpleSWP();
-  /*
-  auto_started = true;
+  redRightElim();
+
+  /*auto_started = true;
   chassis.set_brake_mode('H');
   switch(current_auton_selection){  
     case 0:
       redSWP(); //This is the default auton, if you don't select from the brain.
       break;        //Change these to be your own auton functions in order to use the auton selector.
     case 1:         //Tap the screen to cycle through autons.
-      blueSWP();
+      redRightQual();
       break;
     case 2:
-      redElim();
+      redRightElim();
       break;
     case 3:
-      blueElim();
+      redLeftElim();
       break;
- }
+    case 4:
+      blueSWP(); 
+      break;     
+    case 5:     
+      blueLeftQual();
+      break;
+    case 6:
+      blueLeftElim();
+      break;
+    case 7:
+      blueRightElim();
+      break;
+    case 8:
+      skills();
+      break;
+ }*/
  chassis.set_brake_mode('C');
- */
 }
+
 
 void opcontrol(void) {
   chassis.set_brake_mode('C');
