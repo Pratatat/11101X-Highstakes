@@ -40,18 +40,20 @@ Drive chassis(
   2.75,
   //Input Forward Tracker center distance (In.) (a positive distance corresponds to a tracker on the right side of the robot, negative is left.)
   //For a zero tracker tank drive with odom, put the positive distance from the center of the robot to the right side of the drive.
-  1.25,
+  0,
   //Input the Sideways Tracker Port, following the same steps as the Forward Tracker Port:
   15,
   //Sideways tracker diameter (reverse to make the direction switch):
   2.75,
   //Sideways tracker center distance (positive distance is behind the center of the robot, negative is in front):
-  2
+  0.75
 );
 
 Intake intake(
 	{intake_mtrl.get_port(), intake_mtrr.get_port()}
 );
+
+
 
 Pneumatics pneumatics(
 	{clench, climb, doinker}
@@ -122,12 +124,13 @@ void competition_initialize() {
     }
     pros::Task::delay(10);
     }
-}
+} 
 void autonomous() {
-  redRightElim();
+  chassis.set_brake_mode('H');
+  tank_odom_test();
 
   /*auto_started = true;
-  chassis.set_brake_mode('H');
+  chassis.set_brake_mode('H');ed
   switch(current_auton_selection){  
     case 0:
       redSWP(); //This is the default auton, if you don't select from the brain.
