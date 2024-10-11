@@ -13,6 +13,8 @@ pros::Motor right_middle_mtr(19, pros::v5::MotorGears::blue, pros::v5::MotorUnit
 pros::Motor right_back_mtr(21, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
 pros::Motor intake_mtrl(-14, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
 pros::Motor intake_mtrr(-90, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
+//pros::Motor neutral_stake_mtr(11, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
+//pros::Rotation neutral_stake_rot(9);
 
 //Chassis constructor
 Drive chassis( 
@@ -49,11 +51,13 @@ Drive chassis(
   0.75
 );
 
-Intake intake(
-	{intake_mtrl.get_port(), intake_mtrr.get_port()}
+Neutral_Stake neutral_stake(
+  {11,9}
 );
 
-
+Intake intake(
+	{intake_mtrr.get_port(),intake_mtrl.get_port()}
+);
 
 Pneumatics pneumatics(
 	{clench, climb, doinker}
@@ -73,9 +77,10 @@ void initialize() {
 	pros::lcd::initialize();
 	chassis.initialize();
 	intake.initialize();
+  neutral_stake.initialize();
 	pneumatics.clench_initialize();
-  pneumatics.doinker_initialize();
 	pneumatics.climb_initialize();
+  pneumatics.doinker_initialize();
 }
 
 void disabled() {}
@@ -127,7 +132,8 @@ void competition_initialize() {
 } 
 void autonomous() {
   chassis.set_brake_mode('H');
-  tank_odom_test();
+  
+  blueSWP();
 
   /*auto_started = true;
   chassis.set_brake_mode('H');ed
@@ -165,15 +171,15 @@ void autonomous() {
 
 
 void opcontrol(void) {
+  //printf("motorbrakemode: %d\n", neutral_stake_mtr.get_brake_mode());
+  neutral_stake.initialize();
   chassis.set_brake_mode('C');
   while (1) {
     chassis.arcade_control();
-    //chassis.tank_control();
-    //chassis.arcade_control_double();
+    neutral_stake.neutral_stake_control();
 		intake.intake_control();
 		pneumatics.clench_control();
     pneumatics.doinker_control();
-    pneumatics.climb_control();
     pros::delay(util::DELAY_TIME); 
   }
 }
