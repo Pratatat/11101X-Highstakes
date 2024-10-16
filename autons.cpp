@@ -372,26 +372,30 @@ void redRightElim(){
 void redLeftElim(){
   odom_constants();
   chassis.drive_distance(-14);
-  pros::delay(100);
+  pros::delay(200);
   chassis.right_swing_to_angle(19.5);
-  pros::delay(100);
-  chassis.drive_distance(-16);
+  pros::delay(200);
+  chassis.drive_distance(-16.25);
+  pros::delay(50);
   pneumatics.clench_v(1);
   intake.move(600);
-  pros::delay(1000);
+  pros::delay(1200);
   chassis.turn_to_angle(92);
-  pros::delay(100);
+  pros::delay(200);
   chassis.set_coordinates(0, 0, 0);
-  pros::delay(100);
-  chassis.drive_to_point(0, 24, 14, 0,1, 300, 600);
-  pros::delay(1000);
+  pros::delay(200);
+  chassis.drive_to_point(0, 24.5, 14, 0,1, 300, 600);
+  pros::delay(1250);
   chassis.drive_to_point(0, 15, 14, 0,1, 300, 600);
-  pros::delay(100);
+  pros::delay(200);
+  chassis.turn_to_angle(-24,0);
+  intake.move(0);
+  /*
   chassis.turn_to_point(18,15);
   intake.move(600);
   pros::delay(100);
   chassis.drive_to_point(18,15, 14, 0,1, 300, 600);
-  pros::delay(1000);
+  pros::delay(1200);
   chassis.drive_to_point(0, 15, 14, 0,1, 300, 600);
   pros::delay(100);
   chassis.turn_to_point(0,200);
@@ -401,10 +405,10 @@ void redLeftElim(){
   chassis.turn_to_point(19,22);
   pros::delay(100);
   chassis.drive_to_point(19,22, 14, 0,1, 300, 600);
-  pros::delay(1100);
+  pros::delay(1200);
   chassis.drive_to_point(0, 15, 14, 0,1, 300, 600);
   chassis.turn_to_point(-24,-24);
-    /*
+  /*
   chassis.set_coordinates(0, 0, 0);
   chassis.drive_to_point(0, -32, 14, 0,1, 300, 600);
   pneumatics.clench_v(1);
@@ -520,7 +524,7 @@ void blueLeftQual() {
   chassis.turn_to_angle(92);
   pros::delay(100);
   chassis.drive_distance(26.5);
-  pros::delay(800);
+  pros::delay(1400);
   chassis.turn_to_angle(270);
   pros::delay(100);
   chassis.drive_distance(40,0,4.5,0);
@@ -547,21 +551,23 @@ void blueLeftQual() {
 void blueRightElim(){
   odom_constants();
   chassis.drive_distance(-14);
-  pros::delay(100);
+  pros::delay(200);
   chassis.right_swing_to_angle(19.5);
-  pros::delay(100);
-  chassis.drive_distance(-16);
+  pros::delay(200);
+  chassis.drive_distance(-16.25);
+  pros::delay(50);
   pneumatics.clench_v(1);
   intake.move(600);
-  pros::delay(650);
+  pros::delay(1200);
   chassis.turn_to_angle(278);
-  pros::delay(100);
+  pros::delay(200);
   chassis.set_coordinates(0, 0, 0);
-  pros::delay(100);
+  pros::delay(200);
   chassis.drive_to_point(0, 24, 14, 0,1, 300, 600);
-  pros::delay(1000);
+  pros::delay(1250);
   chassis.drive_to_point(0, 15, 14, 0,1, 300, 600);
-  pros::delay(100);
+  pros::delay(200);
+  /*
   chassis.turn_to_point(-18,16);
   intake.move(10000);
   pros::delay(100);
@@ -578,6 +584,7 @@ void blueRightElim(){
   chassis.drive_to_point(-18.5,22, 14, 0);
   pros::delay(1500);
   chassis.drive_to_point(0, 15, 14, 0,1, 300, 600);
+  */
 }
 
 void blueLeftElim() {
@@ -631,7 +638,78 @@ void blueLeftElim() {
 
 
 void skills() {
-  chassis.set_coordinates(0, 0, 0);
   odom_constants();
-  chassis.drive_to_point(0, 24);
+  chassis.set_coordinates(0, 0, 0);
+  pneumatics.clench_v(1);
+  pros::delay(50);                                                                                                                                                                                                                                                                                                                            
+  chassis.drive_to_point(0, -4, 9, 0, 1, 200, 600);
+  intake.move(600);
+  chassis.set_coordinates(0, 0, 0);
+  pros::delay(1000);
+  chassis.drive_to_point(0, 14,12,0);
+  pneumatics.clench_v(0);
+  pros::delay(100);
+  chassis.turn_to_point(36, 12,0,14);
+  pros::delay(100);
+  chassis.drive_to_point(-20, 12,14,0,1,300,600);
+  pros::delay(50);
+  pneumatics.clench_v(1);
+  pros::delay(100);
+  chassis.turn_to_point(0, 33,0,14,1,300,600);
+  pros::delay(100);
+  chassis.drive_to_point(-75,-16);
+  pneumatics.clench_v(0);
+  intake.move(0);
+  chassis.drive_distance(15);
+  /*
+  chassis.turn_to_point(24, 32);
+  chassis.drive_to_point(24, 32);
+  pros::delay(350);
+  chassis.turn_to_point(46, 36);
+  chassis.drive_to_point(46, 36);
+  pros::delay(250);
+  chassis.turn_to_point(46, 14);
+  chassis.drive_to_point(46, 14);
+  pros::delay(150);
+  chassis.drive_to_point(46, 0);
+  pros::delay(200);
+  chassis.turn_to_point(60, 12);
+  pros::delay(25);
+  chassis.drive_to_point(60, 12);
+  pros::delay(200);
+  chassis.turn_to_point(56, 24);
+  chassis.drive_to_point(64, 0, 3, 0,1, 200, 650);
+  intake.move(0);
+  pneumatics.clench_v(0);
+  pros::delay(250);
+  chassis.drive_to_point(60, 12);
+  pros::delay(200);
+  chassis.turn_to_point(72, 12);
+  pros::delay(50);
+  chassis.turn_to_point(72, 12);
+  chassis.drive_to_point(-16, 12);
+  pneumatics.clench_v(1);
+  pros::delay(100);
+  intake.move(600);
+  chassis.turn_to_point(-24, 36);
+  chassis.drive_to_point(-24, 36);
+  pros::delay(350);
+  chassis.turn_to_point(-46, 36);
+  chassis.drive_to_point(-46, 36);
+  pros::delay(250);
+  chassis.turn_to_point(-46, 14);
+  chassis.drive_to_point(-46, 14);
+  pros::delay(150);
+  chassis.drive_to_point(-46, 0);
+  pros::delay(200);
+  chassis.turn_to_point(-60, 12);
+  pros::delay(25);
+  chassis.drive_to_point(-60, 12);
+  pros::delay(200);
+  chassis.turn_to_point(-56, 24);
+  chassis.drive_to_point(-64, 0, 5, 0,1, 200, 600);
+  intake.move(0);
+  pneumatics.clench_v(0);
+  pros::delay(200);
+  */
 }
