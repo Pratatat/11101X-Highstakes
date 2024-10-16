@@ -133,7 +133,7 @@ void competition_initialize() {
 void autonomous() {
   chassis.set_brake_mode('H');
   
-  blueSWP();
+  blueRightElim();
 
   /*auto_started = true;
   chassis.set_brake_mode('H');ed
