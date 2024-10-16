@@ -6,38 +6,50 @@ Neutral_Stake::Neutral_Stake(int8_t neutral_stake_grp, int8_t neutral_stake_rot_
     }
 
 void Neutral_Stake::neutral_stake_control() {
-    if (neutral_stake_rot.get_angle() >= 14000 && neutral_stake_rot.get_angle() <= 35400){
-             while(!(neutral_stake_rot.get_angle() <= 14000 && neutral_stake_rot.get_angle() >= 13500)){
+    if (neutral_stake_rot.get_angle() >= 14500 && neutral_stake_rot.get_angle() <= 35400){
+             while(!(neutral_stake_rot.get_angle() <= 14500 && neutral_stake_rot.get_angle() >= 14000)){
                     neutral_stake_mtr.move(-80);
              }
             neutral_stake_mtr.move(0);
     }
-
-    if (master.get_digital(DIGITAL_Y))
-        neutral_stake_mtr.move(-420);
-    else if (master.get_digital(DIGITAL_B))
-        neutral_stake_mtr.move(420);
-    else {
+    if (master.get_digital(DIGITAL_B)) {
+        if (neutral_stake_rot.get_angle() <= 12000) {
+            if (neutral_stake_position == 1) {
+                intake.move(-120);
+                pros::delay(45);
+                intake.move(0);
+                neutral_stake_position = 0;
+            } neutral_stake_mtr.move(350);
+        } 
+    } else if (master.get_digital(DIGITAL_Y)) {
+        neutral_stake_mtr.move(-350);
+    } else {
         neutral_stake_mtr.move(0);
-
-        // neutral_stake_mtr.brake();
-        printf("motorbrakemode: %d\n", neutral_stake_mtr.get_brake_mode());
     }
-        // printf("motorbrakemode: %d\n", neutral_stake_mtr.get_position());
-        // printf("Tick Position: %ld \n", neutral_stake_rot.get_angle());
-     if (master.get_digital(DIGITAL_A)){
-
-         while (neutral_stake_rot.get_angle() >= 2650 || neutral_stake_rot.get_angle() <= 2550) {
-           if (neutral_stake_rot.get_angle() >= 2650){
-                if (neutral_stake_rot.get_angle() >= 35500 && neutral_stake_rot.get_angle() <= 35999)
-                    neutral_stake_mtr.move(60);
-                else
-                    neutral_stake_mtr.move(-60);
-           }
-           else if (neutral_stake_rot.get_angle() <= 2550)
-                neutral_stake_mtr.move(60);
+    if (master.get_digital(DIGITAL_A)) {
+        while (neutral_stake_rot.get_angle() <= 2600 or neutral_stake_rot.get_angle() >= 35000) {
+            neutral_stake_mtr.move(80);
         }
-        neutral_stake_mtr.move(0);
+        while (neutral_stake_rot.get_angle() >= 3050) {
+            neutral_stake_mtr.move(-100);
+        } neutral_stake_mtr.move_velocity(0);
+        neutral_stake_mtr.set_brake_mode(MOTOR_BRAKE_HOLD);
+
+        neutral_stake_position = 1;
+
+
+        /*if (neutral_stake_position == 0) {
+            while (neutral_stake_rot.get_angle() <= 3850 or neutral_stake_rot.get_angle() >= 34000) {
+                neutral_stake_mtr.move(325);
+            }
+            while (neutral_stake_rot.get_angle() >= 3900) {
+                neutral_stake_mtr.move(-325);
+            } neutral_stake_position = 1;
+        } else {
+            while (neutral_stake_rot.get_angle() <= 12000) {
+                neutral_stake_mtr.move(350);
+            } neutral_stake_position = 0;
+        }*/
     }
 }
 
@@ -47,6 +59,7 @@ void Neutral_Stake::initialize() {
     neutral_stake_rot.reset();
     neutral_stake_rot.set_data_rate(5);
     neutral_stake_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    neutral_stake_position = 0;
 }
 
 void Neutral_Stake::move(double voltage) {
